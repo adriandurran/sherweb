@@ -6,5 +6,4 @@ WORKDIR /usr/src/app
 COPY package.json /usr/src/app
 RUN yarn install
 EXPOSE 4050
-RUN chmod +x /wait
 CMD yarn start
