@@ -1,20 +1,15 @@
-import axios from 'axios';
+import puppeteer from 'puppeteer';
 
 export const getSocialAccounts = async (req, res) => {
-  console.log(req.params.name);
   try {
-    const result = await axios.get(`https://www.github.com/${req.params.name}`);
-
-    let rawData = '';
-    // result.on('data', (chunk) => {
-    //   rawData += chunk;
-    // });
-    // result.on('end', () => {
-    //   rawData = rawData.replace(/(<([^>]+)>)/gi, '');
-    //   console.log(rawData);
-    // });
-    rawData = result.data.replace(/(<([^>]+)>)/gi, '');
-    res.send(rawData);
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto(`https://github.com/adriandurran`, {
+      waitUntil: 'networkidle2'
+    });
+    // do something here
+    await page.screenshot({ path: 'example.png' });
+    await browser.close();
   } catch (error) {
     console.log(error.message);
     res.send(error.message);
