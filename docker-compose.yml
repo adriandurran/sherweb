@@ -1,12 +1,12 @@
 version: "3.5"
 
 services:
-  # taxgen_db:
-  #   image: mongo:latest
-  #   container_name: taxgen_db
-  #   restart: unless-stopped
-  #   volumes:
-  #     - ./docker/data/taxgen_db:/data/db
+  webgen_db:
+    image: amazon/dynamodb-local:latest
+    container_name: webgen_db
+    restart: unless-stopped
+    volumes:
+      - ./docker/data/webgen_db:/data/db
 
   sherweb_server:
     build:
@@ -21,7 +21,7 @@ services:
       - ./server/.env
     ports:
       - 4050:4050
-    # depends_on:
-    #   - taxgen_db
-    # environment:
-    #   WAIT_HOSTS: taxgen_db:27017
+    depends_on:
+      - webgen_db
+    environment:
+      WAIT_HOSTS: webgen_db:8000
