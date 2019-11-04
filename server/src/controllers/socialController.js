@@ -1,39 +1,47 @@
-import puppeteer from 'puppeteer';
+// import puppeteer from 'puppeteer';
 import { URL } from 'url';
+import urlExists from 'url-exists';
 import axios from 'axios';
 
-export const getSocialAccounts = async (req, res) => {
-  let test = await testUrl('https://github.com', 'adandurran');
-  console.log(test);
+import socialSites from '../services/socialSites';
 
-  // try {
-  //   const browser = await puppeteer.launch();
-  //   const page = await browser.newPage();
-  //   await page.goto(`https://github.com/adriandurran`, {
-  //     waitUntil: 'networkidle2'
-  //   });
-  //   // do something here
-  //   await page.screenshot({ path: 'example.png' });
-  //   await browser.close();
-  // } catch (error) {
-  //   console.log(error.message);
-  //   res.send(error.message);
-  // }
+export const getSocialAccounts = async (req, res) => {
+  const name = req.params.name;
+
+  // loop through the object and add name to the ident '{}'
+  // if returns true....add to array of ok links
+  // if false just ignore
+
+  let validSites = [];
+
+  for (let key in socialSites) {
+    if (socialSites.hasOwnProperty(key)) {
+      const urlS = socialSites[key].replace('{}', name);
+      try {
+        // console.log(await testURL(urlS));
+        if (await testURL(urlS)) {
+          validSites.push({ [key]: urlS });
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    console.log(validSites);
+  }
+  console.log(validSites);
+  res.send(validSites);
 };
 
-async function testUrl(url, name) {
+async function testURL(url) {
   try {
-    const result = await axios({
-      method: 'head',
-      baseURL: url,
-      url: name
+    let result = await axios({
+      method: 'HEAD',
+      url
     });
-    if (result.status !== 200) {
-      return false;
-    }
-    return true;
+    // console.log(/4\d\d/.test(result.statusCode) === false);
+    return /4\d\d/.test(result.statusCode) === false;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return false;
   }
 }
