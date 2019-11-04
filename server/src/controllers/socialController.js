@@ -14,20 +14,18 @@ export const getSocialAccounts = async (req, res) => {
 
   let validSites = [];
 
-  for (let key in socialSites) {
-    if (socialSites.hasOwnProperty(key)) {
-      const urlS = socialSites[key].replace('{}', name);
-      try {
-        // console.log(await testURL(urlS));
-        if (await testURL(urlS)) {
-          validSites.push({ [key]: urlS });
-        }
-      } catch (error) {
-        console.log(error);
-      }
+  const sitesArray = Object.entries(socialSites);
+
+  const sitesLength = sitesArray.length;
+
+  for (let i = 0; i < sitesLength; i++) {
+    const urlS = sitesArray[i][1].replace('{}', name);
+    const siteKey = sitesArray[i][0];
+    if (await testURL(urlS)) {
+      validSites.push({ [siteKey]: urlS });
     }
-    console.log(validSites);
   }
+
   console.log(validSites);
   res.send(validSites);
 };
@@ -38,10 +36,9 @@ async function testURL(url) {
       method: 'HEAD',
       url
     });
-    // console.log(/4\d\d/.test(result.statusCode) === false);
+
     return /4\d\d/.test(result.statusCode) === false;
   } catch (error) {
-    // console.log(error);
     return false;
   }
 }
