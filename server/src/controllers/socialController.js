@@ -1,6 +1,5 @@
 // import puppeteer from 'puppeteer';
 import { URL } from 'url';
-import urlExists from 'url-exists';
 import axios from 'axios';
 
 import socialSites from '../services/socialSites';
@@ -46,7 +45,6 @@ async function testURL(url, name) {
       if (
         rawData.includes(name) &&
         !rawData.includes('Not Found') &&
-        !rawData.includes('Not found') &&
         !rawData.includes('cannot find account')
       ) {
         return true;
