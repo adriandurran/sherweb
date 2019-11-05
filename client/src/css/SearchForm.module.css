@@ -1,0 +1,18 @@
+.paper {
+  margin: 1rem 0;
+  padding: 1rem;
+  /* color: white;
+  background-color: #282c34; */
+}
+
+.textFields {
+  width: 350px;
+}
+
+.title {
+  text-align: center;
+}
+
+.sButton {
+  margin-top: 1.5rem;
+}

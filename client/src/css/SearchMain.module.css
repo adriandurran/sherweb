@@ -1,3 +1,4 @@
-/* .wrapper {
-  margin: 2rem 0;
-} */
+.mainSearch {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
