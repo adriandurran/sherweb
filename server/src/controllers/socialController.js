@@ -21,7 +21,8 @@ export const getSocialAccounts = async (req, res) => {
   for (let i = 0; i < sitesLength; i++) {
     const urlS = sitesArray[i][1].replace('{}', name);
     const siteKey = sitesArray[i][0];
-    if (await testURL(urlS)) {
+    if (await testURL(urlS, name)) {
+      console.log(urlS);
       validSites.push({ [siteKey]: urlS });
     }
   }
@@ -30,14 +31,29 @@ export const getSocialAccounts = async (req, res) => {
   res.send(validSites);
 };
 
-async function testURL(url) {
+async function testURL(url, name) {
   try {
     let result = await axios({
-      method: 'HEAD',
-      url
+      method: 'GET',
+      url,
+      timeout: 10000
     });
 
-    return /4\d\d/.test(result.statusCode) === false;
+    if (/4\d\d/.test(result.statusCode) === true) {
+      return false;
+    } else {
+      let rawData = result.data.replace(/(<([^>]+)>)/gi, '');
+      if (
+        rawData.includes(name) &&
+        !rawData.includes('Not Found') &&
+        !rawData.includes('Not found') &&
+        !rawData.includes('cannot find account')
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
   } catch (error) {
     return false;
   }
