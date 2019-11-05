@@ -1,0 +1,8 @@
+.app {
+  text-align: center;
+  flex-grow: 1;
+}
+
+.wrapper {
+  margin: 2rem 0;
+}

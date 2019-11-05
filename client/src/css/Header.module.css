@@ -1,0 +1,12 @@
+.menuButton {
+  margin-right: 2rem;
+}
+
+.title {
+  flex-grow: 1;
+}
+
+.appheader {
+  background-color: #282c34;
+  color: white;
+}
