@@ -4,7 +4,7 @@ import '../css/App.css';
 function App() {
   return (
     <div className="App">
-      <header className="App-header"></header>
+      <header className="App-header"> Twitter Search</header>
     </div>
   );
 }
