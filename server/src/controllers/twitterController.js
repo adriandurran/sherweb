@@ -28,8 +28,6 @@ export const twitterSearch = async (req, res) => {
     Authorization: `Bearer ${access_token}`
   };
 
-  console.log(searchParams);
-
   let paramsS = {
     q: searchParams,
     tweet_mode: 'extended',

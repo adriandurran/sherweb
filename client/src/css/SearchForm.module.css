@@ -1,8 +1,7 @@
 .paper {
   margin: 1rem 0;
   padding: 1rem;
-  /* color: white;
-  background-color: #282c34; */
+  grid-column-start: 1;
 }
 
 .textFields {

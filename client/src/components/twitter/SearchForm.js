@@ -24,8 +24,6 @@ const SearchForm = () => {
   const dispatch = useDispatch();
 
   const onSubmit = async (values, form) => {
-    console.log(values);
-
     // need to add some error checking in here
     // if the value is missing........
 

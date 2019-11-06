@@ -1,0 +1,13 @@
+.wrapper {
+  grid-column-start: 2;
+  margin: 1rem 0;
+  padding: 1rem;
+}
+
+.title {
+  text-align: center;
+}
+
+.summary {
+  height: 3rem;
+}
