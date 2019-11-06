@@ -1,12 +1,5 @@
 import axios from 'axios';
 
-// do we have an existing access token?
-// if not get a token
-// if we do use token
-// if token fails get a new token
-
-// uri encode search parameters....
-
 export const getTwitterAccessToken = async () => {
   let accessToken = await checkForToken();
   // do we have an existing access token?
