@@ -32,7 +32,6 @@ const checkForToken = async () => {
 const getNewToken = async () => {
   const keyString = `${process.env.TWITTER_API_KEY}:${process.env.TWITTER_SECRET_KEY}`;
   const base64Key = Buffer.from(keyString).toString('base64');
-  console.log(base64Key);
 
   const headers = {
     'Content-Type': 'application/json',

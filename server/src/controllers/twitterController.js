@@ -9,13 +9,34 @@ import { getTwitterAccessToken } from '../services/twitterServices';
 // uri encode search parameters....
 
 export const twitterSearch = async (req, res) => {
-  const searchParams = req.body;
+  const { keywords, hashtags, location } = req.body;
   const access_token = await getTwitterAccessToken();
 
   if (access_token === null) {
     res.status(403).send('Access keys are invalid');
   }
 
-  // if there is a location.....get location
   // uri encode search parameters....
+  const searchParams = encodeURIComponent(`${keywords} ${hashtags}`);
+  console.log(searchParams);
+  const headers = {
+    Authorization: `Bearer ${access_token}`
+  };
+  // if there is a location.....get location
+
+  try {
+    const result = await axios({
+      method: 'get',
+      url: 'https://api.twitter.com/1.1/search/tweets.json',
+      headers,
+      params: {
+        q: searchParams
+      }
+    });
+
+    res.send(result.data);
+  } catch (error) {
+    console.log(error);
+    res.send(error.response);
+  }
 };
