@@ -4,7 +4,7 @@ import { getTwitterAccessToken } from '../services/twitterServices';
 import { getLatLng } from '../services/geoServices';
 
 export const twitterSearch = async (req, res) => {
-  const { keywords, hashtags, location } = req.body;
+  const { keywords, hashtags, location, radius } = req.body;
   const access_token = await getTwitterAccessToken();
 
   if (access_token === null) {
@@ -18,13 +18,14 @@ export const twitterSearch = async (req, res) => {
   };
 
   let paramsS = {
-    q: searchParams
+    q: searchParams,
+    tweet_mode: 'extended'
   };
   // if there is a location.....get location
   // default at moment to 50km radius
   if (location) {
     const { lat, lng } = await getLatLng(location);
-    const locParams = `${lat},${lng},50km`;
+    const locParams = `${lat},${lng},${radius}km`;
     paramsS = {
       ...paramsS,
       geocode: locParams

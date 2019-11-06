@@ -5,6 +5,8 @@ import { useDispatch } from 'react-redux';
 
 import styles from '../../css/SearchForm.module.css';
 
+import { postTwitterSearch } from '../../actions/twitter';
+
 // const required = (value) => (value ? undefined : 'Required');
 
 const TextFieldAdapter = ({ input, meta, ...rest }) => (
@@ -19,10 +21,16 @@ const TextFieldAdapter = ({ input, meta, ...rest }) => (
 );
 
 const SearchForm = () => {
+  const dispatch = useDispatch();
+
   const onSubmit = async (values, form) => {
     console.log(values);
-    // dispatch(addMessage({ ...values, time: Date.now() }));
-    // returnMsg(values.text);
+
+    // need to add some error checking in here
+    // if the value is missing........
+
+    dispatch(postTwitterSearch(values));
+
     // setTimeout(() => {
     //     form.reset();
     // }, 300);
@@ -56,9 +64,16 @@ const SearchForm = () => {
             </div>
             <div>
               <Field
-                name="Location"
+                name="location"
                 component={TextFieldAdapter}
                 label="Location"
+                className={styles.textFields}
+              />
+              <Field
+                name="radius"
+                type="number"
+                component={TextFieldAdapter}
+                label="Radius (km)"
                 className={styles.textFields}
               />
             </div>
