@@ -10,16 +10,31 @@ export const twitterSearch = async (req, res) => {
   if (access_token === null) {
     res.status(403).send('Access keys are invalid');
   }
+  let searchParams;
 
+  if (!keywords) {
+    searchParams = encodeURIComponent(`${hashtags}`);
+  }
+  if (!hashtags) {
+    searchParams = encodeURI(`${keywords}`);
+  }
+
+  if (hashtags && keywords) {
+    searchParams = encodeURIComponent(`${keywords} ${hashtags}`);
+  }
   // uri encode search parameters....
-  const searchParams = encodeURIComponent(`${keywords} ${hashtags}`);
+
   const headers = {
     Authorization: `Bearer ${access_token}`
   };
 
+  console.log(searchParams);
+
   let paramsS = {
     q: searchParams,
-    tweet_mode: 'extended'
+    tweet_mode: 'extended',
+    result_type: 'recent',
+    count: 100
   };
   // if there is a location.....get location
   // default at moment to 50km radius

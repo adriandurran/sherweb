@@ -31,9 +31,9 @@ const SearchForm = () => {
 
     dispatch(postTwitterSearch(values));
 
-    // setTimeout(() => {
-    //     form.reset();
-    // }, 300);
+    setTimeout(() => {
+      form.reset();
+    }, 300);
   };
 
   return (

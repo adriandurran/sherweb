@@ -1,8 +1,12 @@
 import { combineReducers } from 'redux';
-import { twitterSearchReducer } from './twitterSearch';
+import {
+  twitterSearchReducer,
+  twitterSearchMetadataReducer
+} from './twitterSearch';
 
 const reducer = combineReducers({
-  twitterSearch: twitterSearchReducer
+  twitterSearch: twitterSearchReducer,
+  twitterSearchMetadata: twitterSearchMetadataReducer
 });
 
 export default reducer;
