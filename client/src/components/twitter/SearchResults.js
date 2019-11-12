@@ -1,16 +1,20 @@
-import React from 'react';
-import { Typography, Paper, Grid } from '@material-ui/core';
-import { useSelector } from 'react-redux';
+import React from "react";
+import { Typography, Paper, Grid } from "@material-ui/core";
+import { useSelector } from "react-redux";
 
-import { selectAllSearchResults } from '../../selectors/twitterSelectors';
+import {
+  selectAllSearchResults,
+  selectSearchMetadata
+} from "../../selectors/twitterSelectors";
 
-import SearchSummary from './SearchSummary';
-import SearchResultDetail from './SearchResultDetail';
+import SearchSummary from "./SearchSummary";
+import SearchResultDetail from "./SearchResultDetail";
 
-import styles from '../../css/SearchResults.module.css';
+import styles from "../../css/SearchResults.module.css";
 
 const SearchResults = () => {
   const results = useSelector(selectAllSearchResults);
+  const meta = useSelector(selectSearchMetadata);
 
   return (
     <Paper className={styles.wrapper}>
@@ -19,7 +23,7 @@ const SearchResults = () => {
       </Typography>
       {results.length > 0 && <SearchSummary results={results} />}
       <Grid container spacing={4}>
-        {results.map((detail) => {
+        {results.map(detail => {
           return <SearchResultDetail detail={detail} key={detail.id} />;
         })}
       </Grid>
