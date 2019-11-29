@@ -1,26 +1,30 @@
 import React from 'react';
-import { Box, Badge, withStyles, IconButton } from '@material-ui/core';
-import { Twitter } from '@material-ui/icons';
+import { Button, Grid } from '@material-ui/core';
+import { Twitter, Whatshot } from '@material-ui/icons';
 
-// import styles from '../../css/SearchResults.module.css';
+import { runToxicityCheck } from '../../utils/toxicChecker';
 
-const StyledBadge1 = withStyles((theme) => ({
-  badge: {
-    right: -3,
-    border: `2px solid ${theme.palette.background.paper}`,
-    padding: '0 4px'
-  }
-}))(Badge);
+import styles from '../../css/SearchResults.module.css';
 
 const SearchSummary = ({ results }) => {
   return (
-    <Box m={1}>
-      <IconButton aria-label="cart">
-        <StyledBadge1 badgeContent={results.length} color="secondary">
-          <Twitter />
-        </StyledBadge1>
-      </IconButton>
-    </Box>
+    <Grid container spacing={4} className={styles.wrapper}>
+      <Grid item>
+        <Button variant="contained" color="secondary" startIcon={<Twitter />}>
+          View {results.length} results
+        </Button>
+      </Grid>
+      <Grid item>
+        <Button
+          variant="contained"
+          color="primary"
+          startIcon={<Whatshot />}
+          onClick={() => runToxicityCheck(results)}
+        >
+          Check toxicity
+        </Button>
+      </Grid>
+    </Grid>
   );
 };
 

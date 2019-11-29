@@ -1,16 +1,15 @@
-import React from "react";
-import { Typography, Paper, Grid } from "@material-ui/core";
-import { useSelector } from "react-redux";
+import React from 'react';
+import { Typography, Paper, Grid } from '@material-ui/core';
+import { useSelector } from 'react-redux';
 
 import {
   selectAllSearchResults,
   selectSearchMetadata
-} from "../../selectors/twitterSelectors";
+} from '../../selectors/twitterSelectors';
 
-import SearchSummary from "./SearchSummary";
-import SearchResultDetail from "./SearchResultDetail";
+import SearchSummary from './SearchSummary';
 
-import styles from "../../css/SearchResults.module.css";
+import styles from '../../css/SearchResults.module.css';
 
 const SearchResults = () => {
   const results = useSelector(selectAllSearchResults);
@@ -21,12 +20,11 @@ const SearchResults = () => {
       <Typography variant="h5" component="h3" className={styles.title}>
         Search results
       </Typography>
-      {results.length > 0 && <SearchSummary results={results} />}
-      <Grid container spacing={4}>
-        {results.map(detail => {
-          return <SearchResultDetail detail={detail} key={detail.id} />;
-        })}
-      </Grid>
+      {results.length > 0 ? (
+        <SearchSummary results={results} />
+      ) : (
+        <div>Nothing found</div>
+      )}
     </Paper>
   );
 };
