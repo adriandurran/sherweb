@@ -1,7 +1,8 @@
 import {
   ADD_TWITTER_SEARCH_RESULTS,
   ADD_TWITTER_SEARCH_METADATA,
-  ADD_MORE_TWITTER_SEARCH_RESULTS
+  ADD_MORE_TWITTER_SEARCH_RESULTS,
+  ADD_TWITTER_TOXICITY
 } from '../actions/types';
 
 export const twitterSearchReducer = (state = [], action) => {
@@ -10,6 +11,8 @@ export const twitterSearchReducer = (state = [], action) => {
       return action.payload;
     case ADD_MORE_TWITTER_SEARCH_RESULTS:
       return [...state, ...action.payload];
+    case ADD_TWITTER_TOXICITY:
+      return action.payload;
     default:
       return state;
   }

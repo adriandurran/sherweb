@@ -1,12 +1,15 @@
 import React from 'react';
 import { Button, Grid } from '@material-ui/core';
 import { Twitter, Whatshot } from '@material-ui/icons';
+import { useDispatch } from 'react-redux';
 
-import { runToxicityCheck } from '../../utils/toxicChecker';
+import { runToxicityCheck } from '../../actions/twitter';
 
 import styles from '../../css/SearchResults.module.css';
 
 const SearchSummary = ({ results }) => {
+  const dispatch = useDispatch();
+
   return (
     <Grid container spacing={4} className={styles.wrapper}>
       <Grid item>
@@ -19,7 +22,7 @@ const SearchSummary = ({ results }) => {
           variant="contained"
           color="primary"
           startIcon={<Whatshot />}
-          onClick={() => runToxicityCheck(results)}
+          onClick={() => dispatch(runToxicityCheck(results))}
         >
           Check toxicity
         </Button>

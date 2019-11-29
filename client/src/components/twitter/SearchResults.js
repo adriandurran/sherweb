@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Paper, Grid } from '@material-ui/core';
+import { Typography, Paper } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 
 import {
