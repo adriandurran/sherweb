@@ -1,2 +1,3 @@
-# sherweb
-GUI implementation of sherlock-js
+# Web Intelligence
+
+Collection of Open Source tools
