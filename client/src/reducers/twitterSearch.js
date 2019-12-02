@@ -2,7 +2,8 @@ import {
   ADD_TWITTER_SEARCH_RESULTS,
   ADD_TWITTER_SEARCH_METADATA,
   ADD_MORE_TWITTER_SEARCH_RESULTS,
-  ADD_TWITTER_TOXICITY
+  ADD_TWITTER_TOXICITY_FULL,
+  ADD_TWITTER_TOXICITY_PARTIAL
 } from '../actions/types';
 
 export const twitterSearchReducer = (state = [], action) => {
@@ -11,8 +12,14 @@ export const twitterSearchReducer = (state = [], action) => {
       return action.payload;
     case ADD_MORE_TWITTER_SEARCH_RESULTS:
       return [...state, ...action.payload];
-    case ADD_TWITTER_TOXICITY:
+    case ADD_TWITTER_TOXICITY_FULL:
       return action.payload;
+    case ADD_TWITTER_TOXICITY_PARTIAL:
+      return state.map(
+        (stObj) =>
+          action.payload.find((plObj) => plObj.id === stObj.id) || stObj
+      );
+
     default:
       return state;
   }

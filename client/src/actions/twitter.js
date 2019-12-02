@@ -5,7 +5,8 @@ import {
   ADD_TWITTER_SEARCH_RESULTS,
   ADD_TWITTER_SEARCH_METADATA,
   ADD_MORE_TWITTER_SEARCH_RESULTS,
-  ADD_TWITTER_TOXICITY
+  ADD_TWITTER_TOXICITY_FULL,
+  ADD_TWITTER_TOXICITY_PARTIAL
 } from './types';
 
 export const postTwitterSearch = (searchTerms) => async (dispatch) => {
@@ -30,7 +31,7 @@ export const fetchMoreResults = (query) => async (dispatch) => {
   // query is equal to the next string
 };
 
-export const runToxicityCheck = (tweets, threshold = 0.9) => async (
+export const runToxicityCheck = (tweets, type, threshold = 0.9) => async (
   dispatch
 ) => {
   const tweetLength = tweets.length;
@@ -56,6 +57,12 @@ export const runToxicityCheck = (tweets, threshold = 0.9) => async (
     // need to put back into the tweet array and
     tweetArray.push(tempObj);
   }
+
+  console.log(tweetArray);
   // update redux
-  dispatch({ type: ADD_TWITTER_TOXICITY, payload: tweetArray });
+  if (type === 'full') {
+    dispatch({ type: ADD_TWITTER_TOXICITY_FULL, payload: tweetArray });
+  } else {
+    dispatch({ type: ADD_TWITTER_TOXICITY_PARTIAL, payload: tweetArray });
+  }
 };

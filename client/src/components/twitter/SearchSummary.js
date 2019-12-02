@@ -1,39 +1,35 @@
 import React from 'react';
 import { Button, Grid } from '@material-ui/core';
-import { Twitter, Whatshot } from '@material-ui/icons';
-import { useDispatch } from 'react-redux';
+import { Twitter } from '@material-ui/icons';
 
-import { runToxicityCheck } from '../../actions/twitter';
-import ToxicityCount from '../toxicity/ToxicityCount';
-import SensitivityCount from '../sensitivity/SensitivityCount';
+import ToxicityCheck from '../toxicity/ToxicityCheck';
 
 import styles from '../../css/SearchResults.module.css';
 
-// add a progress bar for toxicity check
-
 const SearchSummary = ({ results }) => {
-  const dispatch = useDispatch();
+  const sensitive = results.filter((result) => result.possibly_sensitive);
+
+  console.log(sensitive);
 
   return (
-    <Grid container spacing={4} className={styles.wrapper}>
+    <Grid container spacing={2} className={styles.wrapper}>
       <Grid item>
         <Button variant="contained" color="secondary" startIcon={<Twitter />}>
-          View {results.length} results
+          View all {results.length} results
         </Button>
-      </Grid>
-      <Grid item>
-        <SensitivityCount />
       </Grid>
       <Grid item>
         <Button
           variant="contained"
-          color="primary"
-          startIcon={<Whatshot />}
-          onClick={() => dispatch(runToxicityCheck(results))}
+          color="secondary"
+          startIcon={<Twitter />}
+          disabled={sensitive.length === 0}
         >
-          Check toxicity
+          View {sensitive.length} sensitive tweet(s)
         </Button>
-        <ToxicityCount />
+      </Grid>
+      <Grid item>
+        <ToxicityCheck full={results} sensitive={sensitive} />
       </Grid>
     </Grid>
   );

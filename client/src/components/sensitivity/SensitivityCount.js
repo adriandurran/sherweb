@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Chip } from '@material-ui/core';
-import { Whatshot } from '@material-ui/icons';
+import { Button } from '@material-ui/core';
+import { Twitter } from '@material-ui/icons';
 import { useSelector } from 'react-redux';
 
 import { selectAllSensitiveTweets } from '../../selectors/twitterSelectors';
@@ -12,13 +12,9 @@ const SensitivityCount = () => {
   console.log(sensitive);
 
   return (
-    <Chip
-      icon={<Whatshot />}
-      label={sensitive.length}
-      //   onClick={handleClick}
-      //   onDelete={handleDelete}
-      variant="outlined"
-    />
+    <Button variant="contained" color="secondary" startIcon={<Twitter />}>
+      View {sensitive.length} sensitive tweets
+    </Button>
   );
 };
 
