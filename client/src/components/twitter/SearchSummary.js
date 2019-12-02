@@ -4,6 +4,7 @@ import { Twitter, Whatshot } from '@material-ui/icons';
 import { useDispatch } from 'react-redux';
 
 import { runToxicityCheck } from '../../actions/twitter';
+import ToxicityCount from '../toxicity/ToxicityCount';
 
 import styles from '../../css/SearchResults.module.css';
 
@@ -26,6 +27,7 @@ const SearchSummary = ({ results }) => {
         >
           Check toxicity
         </Button>
+        <ToxicityCount />
       </Grid>
     </Grid>
   );

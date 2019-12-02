@@ -38,9 +38,21 @@ export const runToxicityCheck = (tweets, threshold = 0.9) => async (
   const model = await toxicity.load(threshold);
   // need to consider different language versions!!!!!!
   for (let i = 0; i < tweetLength; i++) {
-    let results = await model.classify(tweets[i].full_text);
+    let predictions = await model.classify(tweets[i].full_text);
+    // loop through the results and add a boolean if isToxic
+    let isToxic = false;
+    let toxicCount = 0;
+    let predictionLength = predictions.length;
+    for (let x = 0; x < predictionLength; x++) {
+      if (predictions[x].results[0].match) {
+        toxicCount += 1;
+      }
+    }
+    if (toxicCount > 0) {
+      isToxic = true;
+    }
     // add it to the tweet object
-    let tempObj = { ...tweets[i], toxicity: results };
+    let tempObj = { ...tweets[i], toxicity: predictions, isToxic };
     // need to put back into the tweet array and
     tweetArray.push(tempObj);
   }
