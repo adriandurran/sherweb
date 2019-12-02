@@ -5,8 +5,11 @@ import { useDispatch } from 'react-redux';
 
 import { runToxicityCheck } from '../../actions/twitter';
 import ToxicityCount from '../toxicity/ToxicityCount';
+import SensitivityCount from '../sensitivity/SensitivityCount';
 
 import styles from '../../css/SearchResults.module.css';
+
+// add a progress bar for toxicity check
 
 const SearchSummary = ({ results }) => {
   const dispatch = useDispatch();
@@ -17,6 +20,9 @@ const SearchSummary = ({ results }) => {
         <Button variant="contained" color="secondary" startIcon={<Twitter />}>
           View {results.length} results
         </Button>
+      </Grid>
+      <Grid item>
+        <SensitivityCount />
       </Grid>
       <Grid item>
         <Button

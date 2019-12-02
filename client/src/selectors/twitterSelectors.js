@@ -9,3 +9,10 @@ export const selectAllToxicTweets = createSelector(
     return tweets.filter((tweet) => tweet.isToxic);
   }
 );
+
+export const selectAllSensitiveTweets = createSelector(
+  selectAllSearchResults,
+  (tweets) => {
+    return tweets.filter((tweet) => tweet.possibly_sensitive);
+  }
+);
