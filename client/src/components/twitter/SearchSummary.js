@@ -9,8 +9,6 @@ import styles from '../../css/SearchResults.module.css';
 const SearchSummary = ({ results }) => {
   const sensitive = results.filter((result) => result.possibly_sensitive);
 
-  console.log(sensitive);
-
   return (
     <Grid container spacing={2} className={styles.wrapper}>
       <Grid item>

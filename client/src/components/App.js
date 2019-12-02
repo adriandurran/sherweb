@@ -1,9 +1,11 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
 import styles from '../css/App.module.css';
+import { Router } from '@reach/router';
 
 import Header from './Header';
 import SearchMain from './twitter/SearchMain';
+import SearchResultDetails from './twitter/SearchResultDetails';
 
 function App() {
   return (
@@ -12,7 +14,10 @@ function App() {
         <Header />
       </div>
       <Container className={styles.wrapper}>
-        <SearchMain />
+        <Router>
+          <SearchMain path="/" />
+          <SearchResultDetails path="results" />
+        </Router>
       </Container>
     </>
   );
