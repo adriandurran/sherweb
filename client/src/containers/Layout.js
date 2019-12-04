@@ -8,14 +8,18 @@ import SearchMain from '../components/twitter/SearchMain';
 
 import styles from '../css/Layout.module.css';
 
-const SearchResultDetails = lazy(() =>
-  import('../components/twitter/SearchResultDetails')
+const SearchResultsAll = lazy(() =>
+  import('../components/twitter/SearchResultsAll')
+);
+const SearchResultsSensitive = lazy(() =>
+  import('../components/twitter/SearchResultsSensitive')
 );
 
 const MainRouter = () => {
   return (
     <Router>
-      <SearchResultDetails path="/results/all" />
+      <SearchResultsAll path="/results/all" />
+      <SearchResultsSensitive path="/results/sensitive" />
     </Router>
   );
 };

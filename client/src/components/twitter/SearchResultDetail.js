@@ -16,7 +16,7 @@ import styles from '../../css/SearchResultDetail.module.css';
 const SearchDetail = ({ detail }) => {
   const { user } = detail;
   return (
-    <Grid item xs={12} sm={6}>
+    <Grid item xs={12} sm={4}>
       <Card>
         <CardHeader
           avatar={
