@@ -4,13 +4,13 @@ import { Grid } from '@material-ui/core';
 
 import SearchResultDetail from './SearchResultDetail';
 
-import { selectAllSensitiveTweets } from '../../selectors/twitterSelectors';
+import { selectAllToxicTweets } from '../../selectors/twitterSelectors';
 
 const SearchResultsSensitive = () => {
-  const sensitiveResults = useSelector(selectAllSensitiveTweets);
+  const toxicResults = useSelector(selectAllToxicTweets);
   return (
     <Grid container spacing={1}>
-      {sensitiveResults.map((result) => (
+      {toxicResults.map((result) => (
         <SearchResultDetail detail={result} key={result.id} />
       ))}
     </Grid>

@@ -7,7 +7,10 @@ import {
   CardMedia,
   CardActions,
   Avatar,
-  Typography
+  Typography,
+  Button,
+  Checkbox,
+  FormControlLabel
 } from '@material-ui/core';
 import { formatDistanceToNow } from 'date-fns';
 
@@ -23,7 +26,7 @@ const SearchDetail = ({ detail }) => {
             <Avatar
               aria-label="user"
               className={styles.avatar}
-              alt="Remy Sharp"
+              alt={user.screen_name}
               src={user.profile_image_url_https}
             />
           }
@@ -34,7 +37,25 @@ const SearchDetail = ({ detail }) => {
           <Typography variant="body2" color="textSecondary" component="p">
             {detail.full_text}
           </Typography>
+          {detail.isToxic && (
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={detail.isToxic}
+                  // onChange={handleChange('checkedB')}
+                  // value="checkedB"
+                  color="primary"
+                />
+              }
+              label="Toxic tweet?"
+            />
+          )}
         </CardContent>
+        <CardActions>
+          <Button size="small" color="primary">
+            View detail
+          </Button>
+        </CardActions>
       </Card>
     </Grid>
   );

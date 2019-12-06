@@ -12,7 +12,7 @@ const SearchResultMain = () => {
   return (
     <Grid container spacing={1}>
       {allResults.map((result) => (
-        <SearchResultDetail detail={result} />
+        <SearchResultDetail detail={result} key={result.id} />
       ))}
     </Grid>
   );

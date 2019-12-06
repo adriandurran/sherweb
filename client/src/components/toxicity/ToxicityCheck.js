@@ -14,6 +14,8 @@ import { useDispatch } from 'react-redux';
 
 import { runToxicityCheck } from '../../actions/twitter';
 
+import ToxicityCount from './ToxicityCount';
+
 const ToxicityCheck = ({ full, sensitive }) => {
   const dispatch = useDispatch();
   const [value, setValue] = useState('full');
@@ -63,7 +65,8 @@ const ToxicityCheck = ({ full, sensitive }) => {
         >
           Check toxicity
         </Button>
-      </FormControl>{' '}
+      </FormControl>
+      <ToxicityCount />
     </>
   );
 };

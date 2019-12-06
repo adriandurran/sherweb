@@ -15,11 +15,16 @@ const SearchResultsSensitive = lazy(() =>
   import('../components/twitter/SearchResultsSensitive')
 );
 
+const SearchResultsToxic = lazy(() =>
+  import('../components/twitter/SearchResultsToxic')
+);
+
 const MainRouter = () => {
   return (
     <Router>
       <SearchResultsAll path="/results/all" />
       <SearchResultsSensitive path="/results/sensitive" />
+      <SearchResultsToxic path="/results/toxic" />
     </Router>
   );
 };

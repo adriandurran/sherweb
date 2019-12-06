@@ -11,7 +11,7 @@ const SearchSummary = ({ results }) => {
   const sensitive = results.filter((result) => result.possibly_sensitive);
 
   return (
-    <Grid container spacing={1} className={styles.wrapper} xs={12}>
+    <Grid container spacing={1} className={styles.wrapper}>
       <Grid container spacing={1} item>
         <Grid item>
           <Button
