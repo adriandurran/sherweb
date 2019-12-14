@@ -32,6 +32,8 @@ const ToxicityCheck = ({ full, sensitive }) => {
     }
   };
 
+  // need to add a spinner or some such sort to show toxic check in progress
+
   return (
     <>
       <Typography variant="h5" component="h4">

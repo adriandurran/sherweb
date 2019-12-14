@@ -1,10 +1,11 @@
 import React from 'react';
-import { Button } from '@material-ui/core';
+import { Button, Paper, Typography } from '@material-ui/core';
 import { Whatshot } from '@material-ui/icons';
 import { useSelector } from 'react-redux';
 import { Link } from '@reach/router';
 
 import { selectAllToxicTweets } from '../../selectors/twitterSelectors';
+import styles from '../../css/ToxicityCount.module.css';
 
 const ToxicityCount = () => {
   const toxicTweets = useSelector(selectAllToxicTweets);
@@ -13,7 +14,7 @@ const ToxicityCount = () => {
 
   return (
     <>
-      {toxicTweets.length > 0 && (
+      {toxicTweets.length > 0 ? (
         <Button
           variant="contained"
           color="secondary"
@@ -24,6 +25,10 @@ const ToxicityCount = () => {
         >
           View {toxicTweets.length} toxic tweet(s)
         </Button>
+      ) : (
+        <Paper className={styles.paper}>
+          <Typography component="p">No toxic tweets found</Typography>
+        </Paper>
       )}
     </>
   );
