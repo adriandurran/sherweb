@@ -65,4 +65,5 @@ export const runToxicityCheck = (tweets, type, threshold = 0.9) => async (
   } else {
     dispatch({ type: ADD_TWITTER_TOXICITY_PARTIAL, payload: tweetArray });
   }
+  return tweetArray;
 };

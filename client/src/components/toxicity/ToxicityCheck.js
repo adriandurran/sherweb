@@ -15,21 +15,26 @@ import { useDispatch } from 'react-redux';
 import { runToxicityCheck } from '../../actions/twitter';
 
 import ToxicityCount from './ToxicityCount';
+import Spinner from '../shared/Spinner';
 
 const ToxicityCheck = ({ full, sensitive }) => {
   const dispatch = useDispatch();
   const [value, setValue] = useState('full');
+  const [runCheck, setRunCheck] = useState(false);
 
   const handleChange = (event) => {
     setValue(event.target.value);
   };
 
-  const toxicChoice = () => {
+  const toxicChoice = async () => {
+    setRunCheck(true);
+    let tweetArr = [];
     if (value === 'full') {
-      dispatch(runToxicityCheck(full, value));
+      tweetArr = await dispatch(runToxicityCheck(full, value));
     } else {
-      dispatch(runToxicityCheck(sensitive, value));
+      tweetArr = await dispatch(runToxicityCheck(sensitive, value));
     }
+    setRunCheck(false);
   };
 
   // need to add a spinner or some such sort to show toxic check in progress
@@ -64,11 +69,12 @@ const ToxicityCheck = ({ full, sensitive }) => {
           color="primary"
           startIcon={<Whatshot />}
           onClick={toxicChoice}
+          disabled={runCheck}
         >
           Check toxicity
         </Button>
       </FormControl>
-      <ToxicityCount />
+      {runCheck && <ToxicityCount />}
     </>
   );
 };
