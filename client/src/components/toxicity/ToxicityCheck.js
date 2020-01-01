@@ -15,7 +15,7 @@ import { useDispatch } from 'react-redux';
 import { runToxicityCheck } from '../../actions/twitter';
 
 import ToxicityCount from './ToxicityCount';
-import Spinner from '../shared/Spinner';
+// import Spinner from '../shared/Spinner';
 
 const ToxicityCheck = ({ full, sensitive }) => {
   const dispatch = useDispatch();
@@ -28,11 +28,11 @@ const ToxicityCheck = ({ full, sensitive }) => {
 
   const toxicChoice = async () => {
     setRunCheck(true);
-    let tweetArr = [];
+    // let tweetArr = [];
     if (value === 'full') {
-      tweetArr = await dispatch(runToxicityCheck(full, value));
+      await dispatch(runToxicityCheck(full, value));
     } else {
-      tweetArr = await dispatch(runToxicityCheck(sensitive, value));
+      await dispatch(runToxicityCheck(sensitive, value));
     }
     setRunCheck(false);
   };

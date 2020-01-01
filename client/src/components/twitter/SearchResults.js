@@ -3,8 +3,8 @@ import { Typography, Paper } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 
 import {
-  selectAllSearchResults,
-  selectSearchMetadata
+  selectAllSearchResults
+  // selectSearchMetadata
 } from '../../selectors/twitterSelectors';
 
 import SearchSummary from './SearchSummary';
@@ -13,7 +13,7 @@ import styles from '../../css/SearchResults.module.css';
 
 const SearchResults = () => {
   const results = useSelector(selectAllSearchResults);
-  const meta = useSelector(selectSearchMetadata);
+  // const meta = useSelector(selectSearchMetadata);
 
   return (
     <Paper className={styles.wrapper}>

@@ -55,7 +55,7 @@ const SearchDetail = ({ detail }) => {
             size="small"
             color="primary"
             component={Link}
-            to={`/detailed/${detail.id}`}
+            to={`/detailed/${detail.id_str}`}
           >
             View detail
           </Button>
