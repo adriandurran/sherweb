@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import reduxThunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import './index.css';
+import './css/index.css';
 import App from './components/App';
 import reducers from './reducers';
 // import * as serviceWorker from './serviceWorker';

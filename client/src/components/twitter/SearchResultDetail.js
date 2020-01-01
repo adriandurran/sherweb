@@ -4,7 +4,6 @@ import {
   Card,
   CardContent,
   CardHeader,
-  CardMedia,
   CardActions,
   Avatar,
   Typography,
@@ -12,7 +11,7 @@ import {
   Checkbox,
   FormControlLabel
 } from '@material-ui/core';
-import { formatDistanceToNow } from 'date-fns';
+import { Link } from '@reach/router';
 
 import styles from '../../css/SearchResultDetail.module.css';
 
@@ -52,7 +51,12 @@ const SearchDetail = ({ detail }) => {
           )}
         </CardContent>
         <CardActions>
-          <Button size="small" color="primary">
+          <Button
+            size="small"
+            color="primary"
+            component={Link}
+            to={`/detailed/${detail.id}`}
+          >
             View detail
           </Button>
         </CardActions>

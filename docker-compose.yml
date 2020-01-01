@@ -1,17 +1,17 @@
-version: "3.5"
+version: "3.7"
 
 services:
-  webgen_db:
+  webgen-db:
     image: amazon/dynamodb-local:latest
-    container_name: webgen_db
+    container_name: webgen-db
     restart: unless-stopped
     volumes:
-      - ./docker/data/webgen_db:/data/db
+      - ./docker/data/webgen-db:/data/db
 
-  sherweb_server:
+  sherweb-server:
     build:
       context: ./server
-    container_name: sherweb_server
+    container_name: sherweb-server
     restart: unless-stopped
     volumes:
       - ./server:/usr/src/app
@@ -22,6 +22,6 @@ services:
     ports:
       - 4050:4050
     depends_on:
-      - webgen_db
+      - webgen-db
     environment:
-      WAIT_HOSTS: webgen_db:8000
+      WAIT_HOSTS: webgen-db:8000
