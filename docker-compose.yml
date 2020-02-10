@@ -1,6 +1,16 @@
 version: "3.7"
 
 services:
+  webgen-keycloak:
+    image: jboss/keycloak
+    container_name: webgen-auth
+    restart: unless-stopped
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: password
+    ports:
+      - 8080:8080
+
   webgen-db:
     image: amazon/dynamodb-local:latest
     container_name: webgen-db
